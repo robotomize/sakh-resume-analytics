@@ -60,7 +60,7 @@ for($counter=0;$counter<800;$counter++)
                                 }
                         catch(PDOException $e)
                                 {
-                                   // file_put_contents('/var/www/FeedBrother/PDOErrors.txt', "Ошибка в методе для счетчика просмотров".$e->getMessage(), FILE_APPEND);
+                                    file_put_contents('/var/www/trashErrors.txt', "Ошибка в записи в базу".$e->getMessage(), FILE_APPEND);
                                 }
         
         }
