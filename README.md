@@ -1,2 +1,2 @@
 # SakhAnalystResume
-Небольшой проектик - парсер резюме http://sakh.com
+Небольшой проектик - парсер резюме с http://sakh.com
