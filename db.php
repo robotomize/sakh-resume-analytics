@@ -4,11 +4,13 @@ class DBmodel
 {
     private static $instance = NULL;
     private static $host = 'localhost';
-    private static $dbname = 'frfeed';
-    private static $pass = '13';
+    private static $dbname = 'your_db';
+    private static $pass = 'your_pass';
     private static $user = 'root';
+    
     private function __construct()
     {
+        
     }
     private function __clone()
     {
