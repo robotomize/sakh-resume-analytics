@@ -83,7 +83,7 @@ $data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"]
                 }
                 catch(PDOException $e)
                 {
-                   // file_put_contents('/var/www/FeedBrother/PDOErrors.txt', "Ошибка в методе для счетчика просмотров".$e->getMessage(), FILE_APPEND);
+                   // file_put_contents('SQLerrors.txt', "Ошибка в методе вставки в базу".$e->getMessage(), FILE_APPEND);
                 }
 
 
@@ -91,6 +91,6 @@ $data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"]
 }
 
 
-echo "Progress".round((($counter/800)*100))."%"."\n";
+echo "Progress".round((($counter/800)*100))."%"."\n"; 
 }
 var_dump($firstArray);
