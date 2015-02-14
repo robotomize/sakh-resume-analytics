@@ -1,7 +1,7 @@
 <?php
 
 include "db.php";
-
+include "math.php";
 /**
 *  // реализация простой модели
 */
@@ -56,9 +56,14 @@ class Model
         }
 }
 $objectStart = new Model();
+
 $dataAvgSalaryByType = $objectStart->getAvgSalaryByOld();
+
 $dataAvgSalaryFromAll = $objectStart->getAvgSalryFromAll();
 $dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
+
+$objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
+
 ?>
 <html>
   <head>
@@ -165,13 +170,13 @@ $dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
 <div class="container-fluid">
     <!-- на будущее прогресс бары -->
     <div class="progress">
-      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="25000" aria-valuemin="0" aria-valuemax=<?php echo round($dataAvgSalaryFromAll["0"]); ?>>
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="25000" aria-valuemin="0" aria-valuemax=<?php echo round($dataAvgSalaryFromAll["0"]); ?> style=<?php echo ProgressBarAvg(); ?>>
         <span class="sr-only">Зарплата относительно средней</span>
       </div>
     </div>
 
     <div class="progress">
-        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="25000" aria-valuemin="0" aria-valuemax=<?php echo round($dataMaxSalaryFromAll["0"]); ?>>
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="25000" aria-valuemin="0" aria-valuemax=<?php echo round($dataMaxSalaryFromAll["0"]); ?> style=<?php echo ProgressBarMax(); ?>>
           <span class="sr-only">Зарплата относительно максимальной</span>
         </div>
       </div>
