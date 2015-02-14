@@ -1,7 +1,7 @@
 <?php
 
 include "db.php";
-include "math.php";
+include "Math.php";
 /**
 *  // реализация простой модели
 */
