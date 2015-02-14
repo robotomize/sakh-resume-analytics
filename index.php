@@ -1,4 +1,18 @@
-<?php include "Model.php";  ?>
+<?php
+include "Model.php"; 
+$objectStart = new Model();
+
+$dataAvgSalaryByType = $objectStart->getAvgSalaryByOld();
+$dataMaxSalaryByOld = $objectStart->getMaxSalaryByOld();
+
+$dataAvgSalaryFromType = $objectStart->getAvgSalary();
+$dataMaxSalaryFromType = $objectStart->getMaxSalaryByType();
+
+$dataAvgSalaryFromAll = $objectStart->getAvgSalryFromAll();
+$dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
+
+$objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
+?>
 <html>
   <head>
   	<meta charset="utf-8">
