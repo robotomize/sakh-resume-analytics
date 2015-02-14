@@ -1,11 +1,12 @@
 <?php
 include "db.php";
 include "simpledom/simple_html_dom.php";
+
 $firstArray[] = array();
-for($counter=0;$counter<800;$counter++)
+for($counter=0;$counter<1050;$counter++)
 {
 $html = file_get_html("http://rabota.sakh.com/resume/?list=".$counter);
-for($i=0;$i<17;$i++)
+for($i=0;$i<16;$i++)
 {
         $j = 0;
                 foreach($html->find('div a.vacancy') as $element)
@@ -62,7 +63,8 @@ foreach($html->find('p.vl_descr') as $element)
 
       }
 $j = 0;
-foreach($html->find('nobr[class=green bold]') as $element)
+//nobr[class=green bold]
+foreach($html->find('td.salary') as $element)
       {
         if($j == $i)
                 {
@@ -74,8 +76,9 @@ foreach($html->find('nobr[class=green bold]') as $element)
 
       }
 //var_dump($firstArray);
-
-$data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"],$firstArray[$counter][$i]["2"],$firstArray[$counter][$i]["3"],$firstArray[$counter][$i]["4"],$firstArray[$counter][$i]["5"],$firstArray[$counter][$i]["6"],$firstArray[$counter][$i]["7"],$firstArray[$counter][$i]["8"],$firstArray[$counter][$i]["9"]);
+if($firstArray[$counter][$i]["4"] != "указана") // баг #1
+{
+  $data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"],$firstArray[$counter][$i]["2"],$firstArray[$counter][$i]["3"],$firstArray[$counter][$i]["4"],$firstArray[$counter][$i]["5"],$firstArray[$counter][$i]["6"],$firstArray[$counter][$i]["7"],$firstArray[$counter][$i]["8"],$firstArray[$counter][$i]["9"]);
                try
                 {
                     $STH = DBmodel::getInstance()->prepare("INSERT INTO main_data (id,name,type,resume_link,about,salary,sex,old,family,education,length_of_work) values (?,?,?,?,?,?,?,?,?,?,?)");
@@ -83,14 +86,13 @@ $data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"]
                 }
                 catch(PDOException $e)
                 {
-                   // file_put_contents('SQLerrors.txt', "Ошибка в методе вставки в базу".$e->getMessage(), FILE_APPEND);
+                    file_put_contents('/var/www/Errors.txt', "Ошибка в методе для счетчика просмотров".$e->getMessage(), FILE_APPEND);
                 }
-
-
+}
 
 }
 
+echo "Progress".round((($counter/800)*100))."%"."\n";
 
-echo "Progress".round((($counter/800)*100))."%"."\n"; 
 }
-var_dump($firstArray);
+
