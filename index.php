@@ -1,3 +1,4 @@
+
 <?php
 
 require_once "model.php";
@@ -13,6 +14,7 @@ $dataMaxSalaryFromType = $objectStart->getMaxSalaryByType();
 $dataAvgSalaryFromAll = $objectStart->getAvgSalryFromAll();
 $dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
 $dataByTypeFromSalary = $objectStart->getDataByTypeFromSalary();
+$dataGroupSalaryByCount = $objectStart->getDataBySalaryCount();
 
 $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
 
@@ -35,12 +37,37 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
               color: #8D8D8D;
               font-family: 'Open Sans', sans-serif;
             }
+            .navbar-custom
+              {
+                  background-color:#6B15B0  ;
+                  color:#ffffff;
+                  border-radius:0;
+              }
+
+              .navbar-custom .navbar-nav > li > a
+              {
+                  color:#fff;
+              }
+              .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
+               {
+                  color: #ffffff;
+                  background-color:transparent;
+              }
+              .navbar-custom .navbar-brand
+              {
+                  color:#eeeeee;
+              }
+
         </style>
 
-
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
+    <script type="text/javascript">
+  $('select').select2();
+</script>
     <script type="text/javascript">
 
       google.load("visualization", "1", {packages:["corechart"]});
@@ -167,7 +194,7 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
         var options = {
           title: 'Зависимость максимального значения зарплаты от вида деятельности',
           pieHole: 0.4,
-            width: "100%",
+        width: "100%",
         height: "720",
         };
 
@@ -176,9 +203,46 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
       }
     </script>
 
+ <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Количество", "Зарплата", { role: "style" } ],
+
+         <?php
+             $counter = 0;
+             while($counter<count($dataGroupSalaryByCount))
+                {                       
+                        echo "['{$dataGroupSalaryByCount[$counter][0]}',".intval($dataGroupSalaryByCount[$counter][1]).",'stroke-color: #5E2182; stroke-width: 4; fill-color: #7448C2'],";
+                        $counter++;
+                }
+        ?> 
+        
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Группировка по зарплате",
+        width: "100%",
+        height: "720",
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values1"));
+      chart.draw(view, options);
+  }
+  </script>
 
   </head>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-custom">
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -195,7 +259,7 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Главная <span class="sr-only">(current)</span></a></li>
-          
+
       </ul>
 
     </div>
@@ -204,25 +268,24 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 
 
 <div class="page-header">
-  <h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям.<small>Последнее обновление на 14.02.2015</small></h3> 
+  <h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям</h3>
 </div>
 <div class="container-fluid">
 
- <div class="row">
-    <div class="col-offset-md-3"></div>
-    <div class="col-md-3"><h4>Выберите ваш тип специализации</h4>
-    <select class="js-example-basic-single">
+ <div class="row">    
+   <div class="col-md-3"><center><h4>Выберите ваш тип специализации</h4>
+    <select class="js-example-basic-single col-md-12">
     <?php
                 $counter = 0;
                 while($counter<count($dataByTypeFromSalary))
-                {                        
+                {
                         echo "<option value=AL>".$dataByTypeFromSalary[$counter]["0"]."</option>";
                         $counter++;
                 }
-    ?>       
-    </select>
+    ?>
+    </select></center>
     </div>
-   
+
   </div>
   <div class="row">
   <div class="col-md-12">
@@ -235,6 +298,13 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
    <div id="columnchart_values_max_old"></div>
     </div>
 </div>
+
+<div class="row">
+<div class="col-md-12">
+<div id="columnchart_values1"></div>
+</div>
+</div>
+
 <div class="row">
 <div class="col-md-12">
 <div id="donutchartAvgType"></div>
@@ -246,6 +316,8 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 <div id="donutchartMaxType"></div>
 </div>
 </div>
+
+
 
 
 <!--
@@ -265,9 +337,5 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
       </div>
 -->
 </div>
-
-<script type="text/javascript">
-  $('select').select2();
-</script>
 
 </html>
