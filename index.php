@@ -204,25 +204,26 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 
 
 <div class="page-header">
-  <h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям<small>Последнее обнволение на 14.02.2015</small></h3>
-  <div class="row">
-    <center><div class="col-md-3">
+  <h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям.<small>Последнее обновление на 14.02.2015</small></h3> 
+</div>
+<div class="container-fluid">
+
+ <div class="row">
+    <div class="col-offset-md-3"></div>
+    <div class="col-md-3"><h4>Выберите ваш тип специализации</h4>
     <select class="js-example-basic-single">
     <?php
                 $counter = 0;
                 while($counter<count($dataByTypeFromSalary))
                 {                        
-                        echo "<option value=AL>$dataByTypeFromSalary[$counter]</option>";
+                        echo "<option value=AL>".$dataByTypeFromSalary[$counter]["0"]."</option>";
                         $counter++;
                 }
     ?>       
     </select>
     </div>
-    </center>
+   
   </div>
-</div>
-<div class="container-fluid">
-
   <div class="row">
   <div class="col-md-12">
    <div id="columnchart_values"></div>
