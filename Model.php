@@ -1,14 +1,14 @@
 <?php
 
-include "db.php";
-include "math.php";
+require_once "db.php";
+require_once "math.php";
+
 /**
-*  // реализация простой модели
+*  // базовая модель
 */
 class Model
 
 {
-// Выводим все данные с базы, для вставки в диаграммы
         public function getAllData()
         {
             $result = DBmodel::getInstance()->query("SELECT * FROM main_data");
@@ -34,7 +34,7 @@ class Model
         }
         public function getAvgSalaryByOld()
         {
-        	 $result = DBmodel::getInstance()->query("SELECT old, AVG(salary) FROM main_data GROUP BY old");
+                 $result = DBmodel::getInstance()->query("SELECT old, AVG(salary) FROM main_data GROUP BY old");
            return $result->fetchAll();
         }
 
@@ -50,12 +50,14 @@ class Model
            return $result->fetch();
         }
 
+        public function getDataByTypeFromSalary()
+        {                     
+          $result = DBmodel::getInstance()->query("SELECT distinct(type) FROM main_data");
+           return $result->fetchAll();
+        }
+
         public function __construct()
         {
 
         }
 }
-
-
-?>
-
