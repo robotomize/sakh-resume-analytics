@@ -15,7 +15,7 @@ $dataAvgSalaryFromAll = $objectStart->getAvgSalryFromAll();
 $dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
 $dataByTypeFromSalary = $objectStart->getDataByTypeFromSalary();
 $dataGroupSalaryByCount = $objectStart->getDataBySalaryCount();
-
+$dataCountResume = $objectStart->getCountResume();
 $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
 
 ?>
@@ -34,12 +34,12 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
         <style>
             .headtext
             {
-              color: #8D8D8D;
+              color: #636363;
               font-family: 'Open Sans', sans-serif;
             }
             .navbar-custom
               {
-                  background-color:#6B15B0  ;
+                  background-color:#6f5499;
                   color:#ffffff;
                   border-radius:0;
               }
@@ -57,6 +57,18 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
               {
                   color:#eeeeee;
               }
+            a
+            {
+              color: #6f5499;  
+            }
+            .brandText
+            {
+                
+            }
+            .brandText:hover
+            {
+                color: #636363;
+            }
 
         </style>
 
@@ -230,8 +242,8 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
                        2]);
 
       var options = {
-        title: "Группировка по зарплате",
-        width: "100%",
+        title: "Группировка количества людей по зарплате",
+      
         height: "720",
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -252,13 +264,14 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ResumeAnalyst</a>
+      <a class="navbar-brand" href="#">SakhResumeAnalyst</a>
     </div>
 
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Главная <span class="sr-only">(current)</span></a></li>
+        <li class="brandText"><a href="/">Общие диаграммы <span class="sr-only">(current)</span></a></li>
+         <li class="brandText"><a href="/">Диаграммы по типу деятельности</a></li>
 
       </ul>
 
@@ -268,25 +281,30 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 
 
 <div class="page-header">
-  <h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям</h3>
+  <center><h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com">Sakh.com</a> по зарплатным критериям</h3></center><br>
+   <center> <h2 class="headtext"><u>Проанализировано <?php echo $dataCountResume[0]; ?> резюме</u></h2> </center>
 </div>
 <div class="container-fluid">
 
+<!--
  <div class="row">    
    <div class="col-md-3"><center><h4>Выберите ваш тип специализации</h4>
     <select class="js-example-basic-single col-md-12">
     <?php
+    /*
                 $counter = 0;
                 while($counter<count($dataByTypeFromSalary))
                 {
                         echo "<option value=AL>".$dataByTypeFromSalary[$counter]["0"]."</option>";
                         $counter++;
                 }
+                */
     ?>
     </select></center>
     </div>
-
   </div>
+-->
+
   <div class="row">
   <div class="col-md-12">
    <div id="columnchart_values"></div>
@@ -339,3 +357,4 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 </div>
 
 </html>
+
