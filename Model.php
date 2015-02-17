@@ -69,8 +69,15 @@ class Model
            return $result->fetchAll();
         }
 
+        public function getCountResume()
+        {
+           $result = DBmodel::getInstance()->query("SELECT count(id) from main_data");
+           return $result->fetch(); 
+        }
+
         public function __construct()
         {
 
         }
 }
+
