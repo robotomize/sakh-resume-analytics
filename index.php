@@ -1,24 +1,11 @@
 
 <?php
 
+// Подклчюаем модель с методами по обработке данных
 require_once "model.php";
 
-$objectStart = new Model();
-
-$dataAvgSalaryByType = $objectStart->getAvgSalaryByOld();
-$dataMaxSalaryByOld = $objectStart->getMaxSalaryByOld();
-
-$dataAvgSalaryFromType = $objectStart->getAvgSalary();
-$dataMaxSalaryFromType = $objectStart->getMaxSalaryByType();
-
-$dataAvgSalaryFromAll = $objectStart->getAvgSalryFromAll();
-$dataMaxSalaryFromAll = $objectStart->getMaxSalryFromAll();
-$dataByTypeFromSalary = $objectStart->getDataByTypeFromSalary();
-$dataGroupSalaryByCount = $objectStart->getDataBySalaryCount();
-$dataCountResume = $objectStart->getCountResume();
-$objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
-
 ?>
+
 <html>
   <head>
 
@@ -26,8 +13,10 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Аналитика резюме с http://sakh.com</title>
+        <!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
         <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" />
         <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'> 
@@ -35,8 +24,10 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
         <link href="assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <link href="assets/css/hover_pack.css" rel="stylesheet"> 
         <link href="assets/css/main.css" rel="stylesheet"> 
+
 
         <style>
             .headtext
@@ -52,21 +43,35 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
               }
 
               .navbar-custom .navbar-nav > li > a
-              {  color:#fff; }
+              { 
+              	 color:#fff;               	 
+
+              }  
+              .navbar-custom .navbar-nav > li:hover { }         
               .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
                {
-                  color: #ffffff;
+                  color: #000;
                   background-color:transparent;
               }
               .navbar-custom .navbar-brand
               { color:#eeeeee; }           
             .brandText
             {   }
-            .brandText:hover  {  color: #636363; }     
-                  
-   a { color: #654D8A; }   
-              a:hover { color: #654D8A; text-decoration: underline; }        
+            .brandText:hover  
+            {  
+            	color: #636363;
+            	background-color: #000;
+            }
+            
+                 
+  			 a { color: #654D8A; }   
+             a:hover { color: #654D8A; text-decoration: underline; }  
 
+              .navbar-custom .navbar-nav > li:hover > a
+              { 
+              	 background-color: #000;              	 
+
+              }  
         </style>
 
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -268,11 +273,11 @@ $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalary
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="brandText"><a href="#columnchart_values">Главная <span class="sr-only">(current)</span></a></li>
-        <li class="brandText"><a href="#columnchart_values_max_old">Максимальная зарплата по возрасту<span class="sr-only">(current)</span></a></li>
-        <li class="brandText"><a href="#columnchart_values1">Группировка по зарплате<span class="sr-only">(current)</span></a></li>    
-        <li class="brandText"><a href="#donutchartAvgType">Средняя зарплата по роду специализации</a> <span class="sr-only">(current)</span></a></li>
-        <li class="brandText"><a href="#donutchartMaxType">Максимальная зарплата по роду специализации</a> <span class="sr-only">(current)</span></a></li>
+        <li class="brandText listM"><a href="#columnchart_values">Главная</a></li>
+        <li class="brandText listM"><a href="#columnchart_values_max_old">Максимальная зарплата по возрасту<span class="sr-only">(current)</span></a></li>
+        <li class="brandText listM"><a href="#columnchart_values1">Группировка по зарплате<span class="sr-only">(current)</span></a></li>    
+        <li class="brandText listM"><a href="#donutchartAvgType">Средняя зарплата по роду специализации</a> <span class="sr-only">(current)</span></a></li>
+        <li class="brandText listM"><a href="#donutchartMaxType">Максимальная зарплата по роду специализации</a> <span class="sr-only">(current)</span></a></li>
 
       </ul>
 
