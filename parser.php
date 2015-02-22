@@ -138,18 +138,19 @@ class Parser
 			                		//echo date("Y");			                	
 			                		$typeOfJob = explode(date("Y"), $element->plaintext);
 			                        $firstArray[$counter][$i]["1"] = $typeOfJob["1"];   //type of job
+
 			                        if($typeOfJob["1"] == "")
-			                        {
+			                        {			                        	
 			                        	$typeOfJob = explode(date("Y")-1, $element->plaintext);
-			                        	$firstArray[$counter][$i]["1"] = $typeOfJob["1"];   //type of job
+			                        	$firstArray[$counter][$i]["1"] = $typeOfJob["1"];   //type of job			                        	
 
 			                        		if($typeOfJob["1"] == "")
-						                        {
+						                        {						                        	
 						                      		$typeOfJob = explode(date("Y")-2, $element->plaintext);
 						                        	$firstArray[$counter][$i]["1"] = $typeOfJob["1"];   //type of job
 
 						                        		if($typeOfJob["1"] == "")
-									                        {
+									                        {									                        	
 									                      		$typeOfJob = explode(date("Y")-3, $element->plaintext);
 									                        	$firstArray[$counter][$i]["1"] = $typeOfJob["1"];   //type of job
 									                      	}
@@ -182,7 +183,11 @@ class Parser
 			        if($j == $i)
 			                {
 			                        $salaryArr = explode(" ",$element->plaintext);
-			                        $firstArray[$counter][$i]["4"] = $salaryArr["1"]; //salary
+			                        if(isset($salaryArr["4"]))
+			                        {
+			                        	$firstArray[$counter][$i]["4"] = round(($salaryArr["1"]+$salaryArr["3"])/2);
+			                        }
+			                        else { $firstArray[$counter][$i]["4"] = $salaryArr["1"];   } //salary
 			                        break;
 			                }
 			        else { $j++; }
@@ -199,25 +204,41 @@ class Parser
 			                }
 			        else { $j++; }
 
-			      }     
+			      }  
+			$j = 0;		
+			foreach($html->find('td.title li.post a') as $element)
+			      {
+			        if($j == $i*2)
+			                {	
+			                	$slashDelim = explode("/", $element->href);
+			                	if($slashDelim["1"] == "vacancy")
+			                	{		                       
+			                        $firstArray[$counter][$i]["6"] = $element->href; //salary
+			                        break;
+			                    }
+			                }
+			        else { $j++; }
+
+			      }          
 			
 			if($firstArray[$counter][$i]["4"] != "указана") // баг #1
 			{
 				
-					$data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"],$firstArray[$counter][$i]["4"],$firstArray[$counter][$i]["2"],$firstArray[$counter][$i]["5"]);
+					$data = array(null,$firstArray[$counter][$i]["0"],$firstArray[$counter][$i]["1"],$firstArray[$counter][$i]["4"],$firstArray[$counter][$i]["2"],$firstArray[$counter][$i]["5"],$firstArray[$counter][$i]["6"]);
 			               try
 			                {
-			                    $STH = DBmodel::getInstance()->prepare("INSERT INTO main_data_vacancy (id,name,type,salary,resume_link,company) values (?,?,?,?,?,?)");
+			                    $STH = DBmodel::getInstance()->prepare("INSERT INTO main_data_vacancy (id,name,type,salary,resume_link,company,vacancy_link) values (?,?,?,?,?,?,?)");
 			                    $STH->execute($data);
 			                }
 			                catch(PDOException $e)
 			                {
 			                    file_put_contents('/var/www/Errors.txt', "Ошибка в методе для счетчика просмотров".$e->getMessage(), FILE_APPEND);
-			                }
+			                }			               
+			               			
+			   
 			}
 
-		}
-		
+		}	
 		echo "Loading.. ".round((($counter/102)*140))."%"."\n";
 
 		}
