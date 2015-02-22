@@ -3,10 +3,6 @@
 
 require_once "db.php";
 require_once "math.php";
-
-/**
-*  // базовая модель
-*/
 class Model
 
 {
