@@ -1,6 +1,8 @@
 
 <?php
+
 require_once "model.php";
+
 ?>
 
 <html>
@@ -68,7 +70,18 @@ require_once "model.php";
               { 
               	 background-color: #000;              	 
 
-              }  
+              } 
+              .statisticInfo
+              {
+
+                font-size: 4.3em;
+                color: #430C6B;
+
+              }
+              .statisticSmallInfo
+              {
+                  font-size: 2.3em;
+              } 
         </style>
 
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -284,33 +297,34 @@ require_once "model.php";
 
 <div class="preloader"></div>
 <div class="page-header">
-  <center><h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com" >Sakh.com</a> по зарплатным критериям</h3></center><br><br>
-   <center> <h3 class="headtext">Проанализировано <?php echo $dataCountResume[0]; ?> резюме <?php echo "по состоянию на ".date("d.m.y"); ?></h3> </center>
+  <center><h3 class="headtext">&nbsp;&nbsp;Аналитика резюме с сайта <a href="http://sakh.com" >Sakh.com</a> по зарплатным критериям</h3></center>
+ <!--  <center> <h3 class="headtext">Проанализировано <?php /*echo $dataCountResume[0]; */?> резюме <?php /* echo "по состоянию на ".date("d.m.y");*/ ?></h3> </center> -->
 </div>
  
-<div class="container-fluid">
-       
-    <!--
-     <div class="container">
+<div class="container-fluid">    
+   
      
       <div class="row">
+        
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <center><h2 class="statisticInfo"> <?php echo $dataCountResume["0"]; ?></h3>
+          <small class="statisticSmallInfo">резюме проанализировано</small></center>
         </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+           <center><h2 class="statisticInfo"> <?php echo $dataCountVacancy["0"]; ?></h3>
+          <small class="statisticSmallInfo">вакансий проанализировано</small></center>
        </div>
         <div class="col-md-4">
           <h2>Heading</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
-      </div>
-    -->
+
+       <div>
+
+        
+   
+   
 
 
 <!--
