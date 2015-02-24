@@ -111,7 +111,7 @@ class Parser
 	{
 
 		$firstArray[] = array();
-		for($counter=0;$counter<140;$counter++)
+		for($counter=0;$counter<10;$counter++)
 		{
 		$html = file_get_html("http://rabota.sakh.com/vacancy/?list=".$counter);
 		for($i=0;$i<16;$i++)
@@ -255,8 +255,13 @@ class Parser
 
 $fetchResume = new Parser();
 
-$fetchResume->getVacancy();
-$fetchResume->getResume();
+while(true)
+{	 
+	$fetchResume->getVacancy();
+	$fetchResume->getResume();	
+	sleep(3600*5);
+}
+
 
 
 
