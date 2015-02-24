@@ -169,8 +169,9 @@ class Parser
 			foreach($html->find('td.title li.company a') as $element)
 			      {
 			        if($j == $i)
-			                {			                      
-			                       $firstArray[$counter][$i]["2"] = $element->href;  // vacantion link
+			                {		
+			                	   $divisionByQuestion = explode("?list", $element->href);                     
+			                       $firstArray[$counter][$i]["2"] = $divisionByQuestion["0"];  // vacantion link
 			                       break;
 			                }
 			        else { $j++; }
@@ -212,8 +213,9 @@ class Parser
 			                {	
 			                	$slashDelim = explode("/", $element->href);
 			                	if($slashDelim["1"] == "vacancy")
-			                	{		                       
-			                        $firstArray[$counter][$i]["6"] = $element->href; //salary
+			                	{		 
+			                		$divisionByQuestion = explode("?list", $element->href);                        
+			                        $firstArray[$counter][$i]["6"] = $divisionByQuestion["0"]; //salary
 			                        break;
 			                    }
 			                }
