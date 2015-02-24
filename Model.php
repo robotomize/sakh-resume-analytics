@@ -3,6 +3,8 @@
 
 require_once "db.php";
 require_once "math.php";
+
+
 class Model
 
 {
@@ -128,6 +130,10 @@ $dataByTypeFromSalary = $objectStart->getDataByTypeFromSalary();
 $dataGroupSalaryByCount = $objectStart->getDataBySalaryCount();
 
 $dataCountResume = $objectStart->getCountResume();
+$dataCountVacancy = $objectStart->getCountVacancy();
+
 $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
+
+
 
 
