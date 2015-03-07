@@ -116,6 +116,14 @@ class Model
            return $result->fetch();          
         }
 
+        public function getDataFromEducation()
+        {
+           $result = DBmodel::getInstance()->query("SELECT education,avg(salary) FROM main_data group by education");
+           return $result->fetchAll();
+        }
+
+       
+
         public function __construct()
         {
 
@@ -142,6 +150,8 @@ $dataCountType = $objectStart->getCountTypeOfProf();
 
 $dataCountAvgSalaryFromResume = $objectStart->getAvgSalryFromAll();
 $dataCountAvgSalaryFromVacancy = $objectStart->getAvgSalryFromAllVacancy();
+
+$dataFromEducation = $objectStart->getDataFromEducation();
 
 $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
 
