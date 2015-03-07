@@ -23,6 +23,8 @@ require_once "model.php";
         <link href="assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+
          <link href="assets/css/bootstrap.css" rel="stylesheet">
         <link href="assets/css/hover_pack.css" rel="stylesheet"> 
         <link href="assets/css/main.css" rel="stylesheet"> 
@@ -91,6 +93,7 @@ require_once "model.php";
                 border-radius: 5px;
                 behavior: url(border-radius.htc); 
                 color: #404040;  
+
               }
               .salaryBox:hover
               { 
@@ -106,6 +109,12 @@ require_once "model.php";
                 border-radius: 5px;
                 behavior: url(border-radius.htc);   
               }
+              .shiftText
+              {
+                font-family: 'Gloria Hallelujah', cursive; 
+                font-size: 2.2em;
+                color:  #404040;
+              }
         </style>  
 
   </head>
@@ -119,7 +128,7 @@ require_once "model.php";
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">SakhResumeAnalyst</a>
+      <a class="navbar-brand" href="/" style="font-family: 'Gloria Hallelujah', cursive; font-size: 2.0em; color: #fff; "><strong><u>Sakh</u>Resume<u>Analytics:</u></strong></a>
     </div>
 
 
@@ -167,48 +176,78 @@ require_once "model.php";
       <div class="row">        
         <div class="col-md-4 col-lg-4">
           <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary(round($dataCountAvgSalaryFromResume["0"])); ?></h3>
-          <small class="statisticSmallInfo">Средняя зарплата по резюме</small></center>
+          <small class="statisticSmallInfo">средняя зарплата по резюме</small></center>
         </div>
         <div class="col-md-4 col-lg-4">
            <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary(round($dataCountAvgSalaryFromVacancy["0"])); ?></h3>
-          <small class="statisticSmallInfo">Средняя зарплата по вакансиям</small></center>
+          <small class="statisticSmallInfo">средняя зарплата по вакансиям</small></center>
        </div>
         <div class="col-md-4 col-lg-4">         
-          
+           <center><h2 class="statisticInfo salaryBox"> 5 ч</h3>
+          <small class="statisticSmallInfo">период обновления</small></center>
         </div>
 
        </div>   
-    
+ <br>
+  <br>   
+    <br>
+<div class="row">
+<div class="col-md-12 col-lg-12">
+<p class=""><center><strong><font class="shiftText">Первые 2 графика показывают зависимость <u>зарплатных</u> ожиданий от <u>возраста</u> соискателя.</font></strong></center></p>
+<br><br>
+</div>
+</div>
 
   <div class="row">
   <div class="col-md-12 col-lg-12">
+    <p><font class="shiftText"><center>График зависимости средней зарплаты от возраста</center></font></p>
    <div id="columnchart_values"></div>
 
   </div>
   </div>
 <div class="row">
     <div class="col-md-12 col-lg-12">
+     <p><font class="shiftText"><center>График зависимости максимальной зарплаты от возраста</center></font></p>
+   
    <div id="columnchart_values_max_old"></div>
     </div>
 </div>
 
 <div class="row">
 <div class="col-md-12 col-lg-12">
+<p class=""><center><strong><font class="shiftText">Группировка <u>количества</u> людей по <u>зарплате</u></font></strong></center></p>
 <div id="columnchart_values1"></div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12 col-lg-12">
+  <p class=""><center><strong><font class="shiftText"> Следующие 2 диаграммы показывают распределние зарплатных ожиданий по видам деятельности</font></strong></center></p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12 col-lg-12">
+<p class=""><center><font class="shiftText">Диаграмма среднего значения <u>зарплаты</u> по виду <u>деятельности</u></font></center></p>
 <div id="donutchartAvgType"></div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-md-12 col-lg-12">
+<p class=""><center><font class="shiftText">Диаграмма максимального значения <u>зарплаты</u> по виду <u>деятельности</u></font></center></p>
 <div id="donutchartMaxType"></div>
 </div>
 </div>
+
+<div class="row">
+<div class="col-md-12 col-lg-12">
+<p class=""><center><strong><font class="shiftText">Зависимость среднего значения <u>зарплаты</u>  от <u>качества образования</u>  </font></strong></center></p>
+
+<div id="columnchart_values_edu"></div>
+</div>
+</div>
+
 
 </div>
     <div class="row">
@@ -222,7 +261,7 @@ require_once "model.php";
 				
 				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 footerhop">
 					
-				<p><font class="headertext1">&nbsp;&nbsp;<b>Sakh.com Resume Analyst</b></font></p>
+				<p><font class="headertext1">&nbsp;&nbsp;<b>Sakh Resume Analytics</b></font></p>
                 			
 		
 
@@ -289,7 +328,7 @@ require_once "model.php";
                        2]);
 
       var options = {
-        title: "График зависимости средней зарплаты от возраста",
+        
          width: "50%",
         height: "720",
         bar: {groupWidth: "87%"},
@@ -327,7 +366,7 @@ require_once "model.php";
                        2]);
 
       var options = {
-        title: "График зависимости максимальной зарплаты от возраста",
+       
         width: "100%",
         height: "720",
         bar: {groupWidth: "90%"},
@@ -355,8 +394,7 @@ require_once "model.php";
           ?>
         ]);
 
-        var options = {
-          title: 'Зависимость среднего значения зарплаты от вида деятельности',
+        var options = {       
           pieHole: 0.4,
             width: "100%",
              height: "720",
@@ -385,8 +423,7 @@ require_once "model.php";
           ?>
         ]);
 
-        var options = {
-          title: 'Зависимость максимального значения зарплаты от вида деятельности',
+        var options = {         
           pieHole: 0.4,
         width: "100%",
         height: "720",
@@ -424,7 +461,7 @@ require_once "model.php";
                        2]);
 
       var options = {
-        title: "Группировка количества людей по зарплате",
+        
          width: "100%",
         height: "720",
         bar: {groupWidth: "95%"},
@@ -434,6 +471,36 @@ require_once "model.php";
       chart.draw(view, options);
   }
   </script>
+
+
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Тип деятельности', 'Зарплата'],
+           <?php
+                $counter = 0;
+                while($counter<count($dataFromEducation))
+                {
+                        $dataFromEducation[$counter][1] = round($dataFromEducation[$counter][1]);
+                        echo "['{$dataFromEducation[$counter][0]}', {$dataFromEducation[$counter][1]}],";
+                        $counter++;
+                }
+          ?>
+        ]);
+
+        var options = {         
+          pieHole: 0.4,
+            width: "100%",
+             height: "720",
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('columnchart_values_edu'));
+        chart.draw(data, options);
+      }
+    </script>
+
 
 
 </html>
