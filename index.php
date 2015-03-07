@@ -81,10 +81,9 @@ require_once "model.php";
                   font-size: 2.0em;
               } 
               .salaryBox
-              { 
-                padding-top: 10px;
+              {                 padding-top: 10px;
                 padding-bottom: 10px;
-                width: 35%;
+                width: 43%;
               border-color: #000;
               border: 3px solid;          
                 -moz-border-radius: 5px;
@@ -97,7 +96,7 @@ require_once "model.php";
               { 
                 padding-top: 10px;
                 padding-bottom: 10px;
-                width: 35%;
+                width: 43%;
               color: #fff; 
               background-color: #404040;   
               border-color: #000;
@@ -111,7 +110,7 @@ require_once "model.php";
 
   </head>
 <nav class="navbar navbar-custom">
-  <div class="container-fluid">
+ 
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -134,7 +133,7 @@ require_once "model.php";
       </ul>
 
     </div>
-  </div>
+ 
 </nav>
 
 <div class="preloader"></div>
@@ -146,87 +145,84 @@ require_once "model.php";
 <div class="container-fluid">    
    
      
-      <div class="row">
-        
-        <div class="col-md-4">
+      <div class="row">        
+        <div class="col-md-4 col-lg-4">
           <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary($dataCountResume["0"]); ?></h3>
           <small class="statisticSmallInfo">резюме проанализировано</small></center>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
            <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary($dataCountVacancy["0"]); ?></h3>
           <small class="statisticSmallInfo">вакансий проанализировано</small></center>
        </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
          <center><h2 class="statisticInfo salaryBox"> <?php  echo $dataCountType["0"] ?></h3>
-          <small class="statisticSmallInfo">видов деятельности</small></center>
-          
+          <small class="statisticSmallInfo">видов деятельности</small></center>          
         </div>
        <div>  
-       <div class="row">
-       </div>
+      
 <br>
   <br>
     <br>
 
       <div class="row">        
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
           <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary(round($dataCountAvgSalaryFromResume["0"])); ?></h3>
-          <small class="statisticSmallInfo">Средняя зарплата по ожиданиям</small></center>
+          <small class="statisticSmallInfo">Средняя зарплата по резюме</small></center>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
            <center><h2 class="statisticInfo salaryBox"> <?php echo Math::transformSalary(round($dataCountAvgSalaryFromVacancy["0"])); ?></h3>
           <small class="statisticSmallInfo">Средняя зарплата по вакансиям</small></center>
        </div>
-        <div class="col-md-4">         
+        <div class="col-md-4 col-lg-4">         
           
         </div>
 
-       <div>   
+       </div>   
     
 
   <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 col-lg-12">
    <div id="columnchart_values"></div>
 
   </div>
   </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-lg-12">
    <div id="columnchart_values_max_old"></div>
     </div>
 </div>
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 col-lg-12">
 <div id="columnchart_values1"></div>
 </div>
 </div>
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 col-lg-12">
 <div id="donutchartAvgType"></div>
 </div>
 </div>
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 col-lg-12">
 <div id="donutchartMaxType"></div>
 </div>
 </div>
 
 </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-12">
             <center><p><a href="#columnchart_values"><h2><b>В начало</b></h2></a></p>	</center><br><br>
             </div>
         </div>
 <div id="footermain">
-		<div class="container-fluid">
+		
 			<div class="row">
 				
 				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 footerhop">
 					
-				<p><font class="headertext1"><span class="glyphicon glyphicon-th-list brandimg"></span>&nbsp;&nbsp;<b>Sakh.com Resume Analyst</b></font></p>
+				<p><font class="headertext1">&nbsp;&nbsp;<b>Sakh.com Resume Analyst</b></font></p>
                 			
 		
 
@@ -253,7 +249,7 @@ require_once "model.php";
 				
 				
 			</div>
-		</div>
+	
 	</div>
 
 
@@ -278,7 +274,7 @@ require_once "model.php";
                 while($counter<count($dataAvgSalaryByType))
                 {
                         $dataAvgSalaryByType[$counter][1] =  round((round($dataAvgSalaryByType[$counter][1])+round($dataAvgSalaryByType[$counter+1][1]))/2);
-                        echo "['{$dataAvgSalaryByType[$counter][0]}', {$dataAvgSalaryByType[$counter][1]},'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],";
+                        echo "['{$dataAvgSalaryByType[$counter][0]}', {$dataAvgSalaryByType[$counter][1]},'stroke-color: #703593; stroke-width: 6; fill-color: #C5A5CF'],";
                         $counter = $counter + 2;
                 }
           ?>
@@ -294,9 +290,9 @@ require_once "model.php";
 
       var options = {
         title: "График зависимости средней зарплаты от возраста",
-         width: "100%",
+         width: "50%",
         height: "720",
-        bar: {groupWidth: "95%"},
+        bar: {groupWidth: "87%"},
         legend: { position: "none" },
       };
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
@@ -316,7 +312,7 @@ require_once "model.php";
                 while($counter<count($dataMaxSalaryByOld))
                 {
                         $dataMaxSalaryByOld[$counter][1] = round((round($dataMaxSalaryByOld[$counter][1])+round($dataMaxSalaryByOld[$counter+1][1]))/2);
-                        echo "['{$dataMaxSalaryByOld[$counter][0]}', {$dataMaxSalaryByOld[$counter][1]},'stroke-color: #871B47; stroke-opacity: 0.8; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],";
+                        echo "['{$dataMaxSalaryByOld[$counter][0]}', {$dataMaxSalaryByOld[$counter][1]},'stroke-color: #871B47; stroke-opacity: 0.8; stroke-width: 6; fill-color: #BC5679; fill-opacity: 0.2'],";
                         $counter = $counter +2;
                 }
           ?>
@@ -334,7 +330,7 @@ require_once "model.php";
         title: "График зависимости максимальной зарплаты от возраста",
         width: "100%",
         height: "720",
-        bar: {groupWidth: "95%"},
+        bar: {groupWidth: "90%"},
         legend: { position: "none" },
       };
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values_max_old"));
