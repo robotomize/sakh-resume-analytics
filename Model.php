@@ -110,6 +110,12 @@ class Model
            return $result->fetchAll();
         }
 
+        public function getCountTypeOfProf()
+        {
+           $result = DBmodel::getInstance()->query("SELECT count(distinct(type)) from main_data");
+           return $result->fetch();          
+        }
+
         public function __construct()
         {
 
@@ -131,6 +137,11 @@ $dataGroupSalaryByCount = $objectStart->getDataBySalaryCount();
 
 $dataCountResume = $objectStart->getCountResume();
 $dataCountVacancy = $objectStart->getCountVacancy();
+
+$dataCountType = $objectStart->getCountTypeOfProf();
+
+$dataCountAvgSalaryFromResume = $objectStart->getAvgSalryFromAll();
+$dataCountAvgSalaryFromVacancy = $objectStart->getAvgSalryFromAllVacancy();
 
 $objectConvert = new Math(round($dataAvgSalaryFromAll["0"]),round($dataMaxSalaryFromAll["0"]));
 
