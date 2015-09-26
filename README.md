@@ -1,4 +1,4 @@
 # SakhAnalystResume
-* Небольшой проектик - парсер резюме с http://sakh.com
-* Использует "simple_html_dom.php"
-* http://sakhjobanalytics.cloudapp.net/
+* A small project , resume parser . http://sakh.com
+* Use "simple_html_dom.php"
+* @deprecated http://sakhjobanalytics.cloudapp.net/
